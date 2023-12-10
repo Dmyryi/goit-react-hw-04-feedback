@@ -1,0 +1,12 @@
+.feedback_list {
+    display: flex;
+    list-style: none;
+}
+
+.feedback_item {
+    margin-right: 35px;
+}
+
+.title {
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Staticics = ({ good, neutral, bad, total, positivePercentage }) => {
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
     <>
       <ul>
@@ -16,9 +16,10 @@ const Staticics = ({ good, neutral, bad, total, positivePercentage }) => {
         <li>
           <p>Total: {total}</p>
         </li>
-        <li>Positive Percentage: {positivePercentage}</li>
+        <li>Positive Percentage: {positivePercentage} %</li>
       </ul>
     </>
   );
 };
-export default Staticics;
+
+export default Statistics;

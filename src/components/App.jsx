@@ -9,8 +9,6 @@ export default function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  // eslint-disable-next-line
-  const [options, setOptions] = useState(['good', 'neutral', 'bad']);
 
   const handleFeedbackOption = option => {
     // eslint-disable-next-line
@@ -36,27 +34,38 @@ export default function App() {
     return totalFeedback === 0 ? 0 : Math.round((good / totalFeedback) * 100);
   };
 
+  const options = ['good', 'neutral', 'bad'];
+  const leaveFeedbackHandler = option => () => {
+    handleFeedbackOption(option);
+  };
+
+  const totalFeedback = countTotalFeedback();
+
+  const positivePercentage = countPositiveFeedbackPercentage();
+
   return (
     <div className={styles.container}>
       <div>
         <Section title="Give Feedback">
           <FeedbackOptions
             options={options}
-            onLeaveFeedback={handleFeedbackOption}
+            onLeaveFeedback={leaveFeedbackHandler}
           />
         </Section>
       </div>
-      {countTotalFeedback() === 0 ? (
+      {totalFeedback === 0 ? (
         <Notification message="There is no feedback" />
       ) : (
         <div>
           <Section title="Statistics">
             <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={countTotalFeedback()}
-              positivePercentage={countPositiveFeedbackPercentage()}
+              {...{
+                good,
+                neutral,
+                bad,
+                total: totalFeedback,
+                positivePercentage,
+              }}
             />
           </Section>
         </div>
